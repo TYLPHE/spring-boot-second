@@ -1,5 +1,6 @@
 package com.tylphe.customer;
 
+import com.tylphe.exception.ResourceNotFound;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +19,6 @@ public class CustomerService {
     }
 
     public Customer getCustomer(Integer id) {
-        return customerDAO.selectCustomerById(id).orElseThrow(() -> new IllegalArgumentException("Customer not found"));
+        return customerDAO.selectCustomerById(id).orElseThrow(() -> new ResourceNotFound("Customer not found"));
     }
 }
