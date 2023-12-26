@@ -41,4 +41,37 @@ public class CustomerListDataAccessService implements CustomerDAO {
     public Optional<Customer> selectCustomerById(Integer id) {
         return customers.stream().filter(customer -> customer.getId().equals(id)).findFirst();
     }
+
+    @Override
+    public void insertCustomer(Customer customer) {
+        customers.add(customer);
+    }
+
+    @Override
+    public boolean existsPersonWithEmail(String email) {
+        return customers.stream()
+                .anyMatch(c -> c.getEmail().equals(email));
+    }
+
+    @Override
+    public void removeCustomer(Customer customer) {
+        customers.remove(customer);
+    }
+
+    @Override
+    public void updateCustomer(Customer customer) {
+
+        // I don't need anything here since I directly update it in CustomerService.
+        // Will include my work anyway since it still works.
+        Customer existingCustomer = customers.stream()
+                .filter(c -> c.getId().equals(customer.getId()))
+                .findFirst()
+                .orElseThrow();
+
+        existingCustomer.setEmail(customer.getEmail());
+        existingCustomer.setAge(customer.getAge());
+        existingCustomer.setName(customer.getName());
+    }
+
+
 }
