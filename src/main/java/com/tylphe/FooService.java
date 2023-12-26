@@ -40,7 +40,7 @@ public class FooService {
 
             List<Customer> customers = List.of(alex, joe);
 
-            customerRepository.saveAll(customers);
+//            customerRepository.saveAll(customers);
         };
     }
 }
